@@ -15,7 +15,7 @@ import time as t
 # if __name__ == "__main__":
 #     main()
 
-import websocke t
+import websocket
 
 def main():
     
