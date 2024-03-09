@@ -1,6 +1,8 @@
-from utils.commom import GPIO, t
+import RPi.GPIO as GPIO
 
 DO_PIN = 7
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(DO_PIN, GPIO.IN)
 
 class LightSensor:
     def __init__(self):
@@ -13,4 +15,3 @@ class LightSensor:
             return "Light Detected"
         else:
             return "No Light Detected"
-        t.sleep(0.1)  
