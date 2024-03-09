@@ -1,7 +1,13 @@
+import Adafruit_DHT as dht
+
+DHT = 4
+
+
 class TemperatureSensor:
     def __init__(self) -> None:
         pass
 
     def read(self):
-        return "Temperature Sensor Reading"
+        h, t = dht.read_retry(dht.DHT22, DHT)
+        return "Temperature: " + str(t) + "°C"
     

@@ -7,10 +7,10 @@ import time as t
 def main():
     # print("Hello, World!")
     # print("Humidity Sensor: ", hSensor().read())
-    # print("Temperature Sensor: ", tSensor().read())
     while True:
-        print("Light Sensor: ", lSensor().read())
-        t.sleep(0.5)
+        # print("Light Sensor: ", lSensor().read())
+        print("Temperature Sensor: ", tSensor().read())
+        t.sleep(2.)
 
 if __name__ == "__main__":
     main()
