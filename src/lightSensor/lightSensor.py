@@ -9,6 +9,7 @@ class LightSensor:
 
     def read(self):
         while(True):
+            self.sLight = GPIO.input(DO_PIN)
             if self.sLight == GPIO.LOW:
                 return "Light Detected"
             else:
