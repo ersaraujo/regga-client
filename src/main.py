@@ -2,7 +2,7 @@
 # from temperatureSensor import TemperatureSensor as tSensor
 from lightSensor import LightSensor             as lSensor
 
-# import time as t
+import time as t
 
 # def main():
 #     # print("Hello, World!")
@@ -29,6 +29,7 @@ def main():
             ws.send(sensor)
             lastSensor = sensor
             print("Update data")
+            t.sleep(2.)
         # client.send(lSensor().read())
 
     client.close()
