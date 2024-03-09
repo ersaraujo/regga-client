@@ -13,4 +13,4 @@ class HumiditySensor:
         if self.sHumidity == GPIO.LOW:
             return "Sensor Detected"
         else:
-            return "No Senhor Detected"
+            return "No Sensor Detected"
