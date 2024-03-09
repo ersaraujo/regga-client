@@ -4,7 +4,7 @@ DO_PIN = 7
 
 class LightSensor:
     def __init__(self):
-        sLight = GPIO.setup(DO_PIN, GPIO.OUT)
+        self.sLight = GPIO.setup(DO_PIN, GPIO.OUT)
         pass
 
     def read(self):
