@@ -15,19 +15,18 @@ from lightSensor import LightSensor             as lSensor
 # if __name__ == "__main__":
 #     main()
 
-from socketConnection import SocketClient
+import websocket
 
 def main():
     
-    client = SocketClient('https://spicy-trams-laugh.loca.lt/aws', 5000)
-    client.connect()
-
+    ws = websocket.WebSocket()
+    ws.connect("https://spicy-trams-laugh.loca.lt/aws")
     lastSensor = lSensor().read()
 
     while True:
         sensor = lSensor().read()
         if sensor != lastSensor:
-            client.send(sensor)
+            ws.send(sensor)
             lastSensor = sensor
             print("Update data")
         # client.send(lSensor().read())
