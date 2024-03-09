@@ -30,7 +30,8 @@ def main():
         if _lsensor != lastlSensor or _hsensor != lasthSensor:
             ws.send(_lsensor)
             ws.send(_hsensor)
-            lastSensor = sensor
+            lastlSensor = _lsensor
+            lasthSensor = _hsensor  
             print("Update data")
             t.sleep(2.)
         # client.send(lSensor().read())
