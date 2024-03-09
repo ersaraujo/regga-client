@@ -20,7 +20,7 @@ import websocket
 def main():
     
     ws = websocket.WebSocket()
-    ws.connect("ws://plenty-monkeys-punch.local.lt/ws")
+    ws.connect("ws://plenty-monkeys-punch.loca.lt/ws")
     lastlSensor = lSensor().read()
     lasthSensor = hSensor().read()
 
