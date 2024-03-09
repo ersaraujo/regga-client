@@ -1,42 +1,41 @@
-from humiditySensor import HumiditySensor       as hSensor
-# from temperatureSensor import TemperatureSensor as tSensor
-from lightSensor import LightSensor             as lSensor
+# from humiditySensor import HumiditySensor       as hSensor
+# # from temperatureSensor import TemperatureSensor as tSensor
+# from lightSensor import LightSensor             as lSensor
 
-import time as t
+# import time as t
+# import websocket
 
 # def main():
-#     # print("Hello, World!")
+    
+#     ws = websocket.WebSocket()
+#     ws.connect("ws://plenty-monkeys-punch.loca.lt/ws")
+#     lastlSensor = lSensor().read()
+#     lasthSensor = hSensor().read()
+
 #     while True:
-#         # print("Light Sensor: ", lSensor().read())
-#         # print("Temperature Sensor: ", tSensor().read())
-#         print("Humidity Sensor: ", hSensor().read())
-#         t.sleep(2.)
+#         _lsensor = lSensor().read()
+#         _hsensor = hSensor().read()
+#         if _lsensor != lastlSensor or _hsensor != lasthSensor:
+#             ws.send(_lsensor)
+#             ws.send(_hsensor)
+#             lastlSensor = _lsensor
+#             lasthSensor = _hsensor  
+#             print("Update data")
+#             t.sleep(2.)
+#         # client.send(lSensor().read())
+
+#     client.close()
 
 # if __name__ == "__main__":
 #     main()
 
-import websocket
+# ---------------------------- TESTE SERIAL COMMUNICATION ----------------------------
+import serial
 
-def main():
-    
-    ws = websocket.WebSocket()
-    ws.connect("ws://plenty-monkeys-punch.loca.lt/ws")
-    lastlSensor = lSensor().read()
-    lasthSensor = hSensor().read()
+ser = serial.Serial('/dev/ttyUSB0', 115200)
 
-    while True:
-        _lsensor = lSensor().read()
-        _hsensor = hSensor().read()
-        if _lsensor != lastlSensor or _hsensor != lasthSensor:
-            ws.send(_lsensor)
-            ws.send(_hsensor)
-            lastlSensor = _lsensor
-            lasthSensor = _hsensor  
-            print("Update data")
-            t.sleep(2.)
-        # client.send(lSensor().read())
-
-    client.close()
-
-if __name__ == "__main__":
-    main()
+while True:
+    ser.write("1")
+    t.sleep(5)
+    ser.write("0")
+    t.sleep(5)
