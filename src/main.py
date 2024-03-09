@@ -35,7 +35,7 @@ import time as t
 
 with serial.Serial('/dev/ttyACM0', 115200) as arduino:
     t.sleep(0.1)
-    if arduino.is_open():
+    if arduino.isOpen():
         print("{} connected".format(arduino.port))
         try:
             while True:
