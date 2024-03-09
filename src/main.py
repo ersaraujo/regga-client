@@ -32,10 +32,10 @@
 # ---------------------------- TESTE SERIAL COMMUNICATION ----------------------------
 import serial
 
-ser = serial.Serial('/dev/ttyAMA0', 115200)
+ser = serial.Serial('/dev/ttyUSB0', 115200)
 
 while True:
-    ser.write("1")
+    ser.write("1".encode())
     t.sleep(5)
-    ser.write("0")
+    ser.write("0".encode())
     t.sleep(5)
