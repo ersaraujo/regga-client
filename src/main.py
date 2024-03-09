@@ -20,11 +20,12 @@ import websocket
 def main():
     
     ws = websocket.WebSocket()
-    ws.connect("https://spicy-trams-laugh.loca.lt/aws")
+    ws.connect("ws://spicy-trams-laugh.loca.lt/ws")
     lastSensor = lSensor().read()
 
     while True:
         sensor = lSensor().read()
+        ws.send("test communication")
         if sensor != lastSensor:
             ws.send(sensor)
             lastSensor = sensor
