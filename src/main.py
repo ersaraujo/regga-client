@@ -25,8 +25,6 @@ def main():
 
     while True:
         sensor = lSensor().read()
-        ws.send("test communication")
-        print(ws.recv())
         if sensor != lastSensor:
             ws.send(sensor)
             lastSensor = sensor
