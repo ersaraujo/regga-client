@@ -27,7 +27,7 @@ def main():
     while True:
         _lsensor = lSensor().read()
         _hsensor = hSensor().read()
-        if _lsensor != lastSensor or _hsensor != lastSensor:
+        if _lsensor != lastlSensor or _hsensor != lasthSensor:
             ws.send(_lsensor)
             ws.send(_hsensor)
             lastSensor = sensor
