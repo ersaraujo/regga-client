@@ -20,7 +20,7 @@ import websocket
 def main():
     
     ws = websocket.WebSocket()
-    ws.connect("ws://spicy-trams-laugh.loca.lt/ws")
+    ws.connect("ws://calm-years-lead.loca.lt/ws")
     lastSensor = lSensor().read()
 
     while True:
