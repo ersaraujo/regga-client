@@ -5,7 +5,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(DO_PIN, GPIO.IN)
 
 class HumiditySensor:
-    def __init__(self, humiditySensorAdapter):
+    def __init__(self):
         pass
         
     def read(self):
