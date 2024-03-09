@@ -31,6 +31,7 @@
 
 # ---------------------------- TESTE SERIAL COMMUNICATION ----------------------------
 import serial
+import time as t
 
 ser = serial.Serial('/dev/ttyUSB0', 115200)
 
