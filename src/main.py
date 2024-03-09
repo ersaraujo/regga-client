@@ -1,6 +1,6 @@
 # from humiditySensor import HumiditySensor       as hSensor
 # from temperatureSensor import TemperatureSensor as tSensor
-# from lightSensor import LightSensor             as lSensor
+from lightSensor import LightSensor             as lSensor
 
 # import time as t
 
@@ -19,9 +19,19 @@ from socketConnection import SocketClient
 
 def main():
     
-    client = SocketClient('172.22.66.252', 12345)
+    client = SocketClient('https://spicy-trams-laugh.loca.lt/aws', 5000)
     client.connect()
-    client.send("Hello, World!")
+
+    lastSensor = lSensor().read()
+
+    while True:
+        sensor = lSensor().read()
+        if sensor != lastSensor:
+            client.send(sensor)
+            lastSensor = sensor
+            print("Update data")
+        # client.send(lSensor().read())
+
     client.close()
 
 if __name__ == "__main__":
