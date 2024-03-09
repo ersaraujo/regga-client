@@ -33,10 +33,14 @@
 import serial
 import time as t
 
-ser = serial.Serial('/dev/ttyUSB0', 115200)
-
-while True:
-    ser.write("1".encode())
-    t.sleep(5)
-    ser.write("0".encode())
-    t.sleep(5)
+with serial.Serial('/dev/ttyUSB0', 115200) as arduino:
+    t.sleep(0.1)
+    if arduino.is_open():
+        print("{} connected".format(arduino.port))
+        try:
+            while True:
+                if arduino.in_waiting > 0:
+                    print(arduino.readline().decode('utf-8'))
+                    t.sleep(1)
+        except KeyboardInterrupt:
+            print("Exiting...")
