@@ -1,4 +1,4 @@
-# from humiditySensor import HumiditySensor       as hSensor
+from humiditySensor import HumiditySensor       as hSensor
 # from temperatureSensor import TemperatureSensor as tSensor
 from lightSensor import LightSensor             as lSensor
 
@@ -15,18 +15,21 @@ import time as t
 # if __name__ == "__main__":
 #     main()
 
-import websocket
+import websocke t
 
 def main():
     
     ws = websocket.WebSocket()
-    ws.connect("ws://calm-years-lead.loca.lt/ws")
-    lastSensor = lSensor().read()
+    ws.connect("ws://plenty-monkeys-punch/ws")
+    lastlSensor = lSensor().read()
+    lasthSensor = hSensor().read()
 
     while True:
-        sensor = lSensor().read()
-        if sensor != lastSensor:
-            ws.send(sensor)
+        _lsensor = lSensor().read()
+        _hsensor = hSensor().read()
+        if _lsensor != lastSensor or _hsensor != lastSensor:
+            ws.send(_lsensor)
+            ws.send(_hsensor)
             lastSensor = sensor
             print("Update data")
             t.sleep(2.)
