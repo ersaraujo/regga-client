@@ -13,9 +13,12 @@ def main():
             try:
                 while True:
                     if arduino.in_waiting > 0:
-                        print("{}".format(arduino.readline()))
-                        ws.send("{}".format(arduino.readline()))
-                        ws.send("Update data")
+                        answer=str(arduino.readline())
+                        dataList = answer.split("X")
+                        print(dataList)
+                        # print("{}".format(arduino.readline()))
+                        # ws.send("{}".format(arduino.readline()))
+                        # ws.send("Update data")
                     
             except KeyboardInterrupt:
                 ws.close()
@@ -24,3 +27,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# tmp = {
+
+# }
+
+# data = json dump(tmp)
