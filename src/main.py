@@ -10,25 +10,28 @@ def data_parser(data):
         data[i] = re.search(r"'(.*?)\\", data[i]).group(1)
     return data
 
-def update_data(data):
+def update_data(data, temp):
     if data[0][0] == "T":
         t = data[0][1:]
+        temp.update({"temperature": t})
     elif data[0][0] == "H":
         h = data[0][1:]
+        temp.update({"humidity": h})
     elif data[0][0] == "L":
         l = data[0][1:]
+        temp.update({"luminosity": l})
     elif data[0][0] == "U":
         u = data[0][1:]
-    
-    temp = {
-        "temperature": t,
-        "humidity": h,
-        "luminosity": l,
-        "humidityGround": u
-    }
+        temp.update({"humidityGround": u})
     return temp
 
 def main():
+    temp = {
+        "temperature": 0,
+        "humidity": 0,
+        "luminosity": 0,
+        "humidityGround":0
+    }
     ws = websocket.WebSocket()
     # ws.connect("ws://young-windows-beam.loca.lt/ws")
     with serial.Serial('/dev/ttyACM1', 9600) as arduino:
