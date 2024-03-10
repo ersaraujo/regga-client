@@ -47,7 +47,7 @@ def main():
                         data = data_parser(dataList)
                         temp = update_data(data, temp)
                         updated = updated + 1
-                        if updated == 3:
+                        if updated == 4:
                             updated = 0
                             ws.send(json.dumps(temp))
                             print(temp)
@@ -60,10 +60,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-# tmp = {
-
-# }
-
-# data = json dump(tmp)
