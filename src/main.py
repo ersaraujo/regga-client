@@ -32,6 +32,7 @@ def main():
         "luminosity": 0,
         "humidityGround":0
     }
+    updated = 0
     ws = websocket.WebSocket()
     ws.connect("ws://seminarios-server.loca.lt/ws")
     with serial.Serial('/dev/ttyACM1', 9600) as arduino:
@@ -45,9 +46,13 @@ def main():
                         dataList = answer.split("X")
                         data = data_parser(dataList)
                         temp = update_data(data, temp)
-                        print(temp)
-                        ws.send(json.dumps(temp))
-                    
+                        updated = updated + 1
+                        if updated == 3:
+                            updated = 0
+                            ws.send(json.dumps(temp))
+                            print(temp)
+
+
             except KeyboardInterrupt:
                 ws.close()
                 print("Exiting...")
