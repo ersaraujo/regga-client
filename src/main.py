@@ -10,6 +10,24 @@ def data_parser(data):
         data[i] = re.search(r"'(.*?)\\", data[i]).group(1)
     return data
 
+def update_data(data):
+    if data[0][0] == "T":
+        t = data[0][1:]
+    elif data[0][0] == "H":
+        h = data[0][1:]
+    elif data[0][0] == "L":
+        l = data[0][1:]
+    elif data[0][0] == "U":
+        u = data[0][1:]
+    
+    temp = {
+        "temperature": t,
+        "humidity": h,
+        "luminosity": l,
+        "humidityGround": u
+    }
+    return temp
+
 def main():
     ws = websocket.WebSocket()
     # ws.connect("ws://young-windows-beam.loca.lt/ws")
@@ -23,14 +41,14 @@ def main():
                         answer=str(arduino.readline())
                         dataList = answer.split("X")
                         data = data_parser(dataList)
-                        print(data)
+                        temp = update_data(data)
                         # temp = {
                         #     "temperature": data[0],
                         #     "humidity": data[1],
                         #     "luminosity": data[2],
                         #     "humidityGround": data[3]
                         # }
-                        # print(temp)
+                        print(temp)
                         # print("{}".format(arduino.readline()))
                         # ws.send("{}".format(arduino.readline()))
                         # ws.send("Update data")
