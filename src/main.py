@@ -30,6 +30,7 @@ def update_data(data, temp):
 def main():
     root = tk.Tk()
     root.title("Regga - v1.0")
+    root.configure(bg="black")
     
     planta = tk.PhotoImage(file="planta.png")
     canvas = tk.Canvas(root, width=1280, height=720)
