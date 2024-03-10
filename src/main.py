@@ -33,7 +33,7 @@ def main():
         "humidityGround":0
     }
     ws = websocket.WebSocket()
-    # ws.connect("ws://young-windows-beam.loca.lt/ws")
+    ws.connect("ws://seminarios-server.loca.lt/ws")
     with serial.Serial('/dev/ttyACM1', 9600) as arduino:
         t.sleep(0.1)
         if arduino.isOpen():
@@ -44,17 +44,9 @@ def main():
                         answer=str(arduino.readline())
                         dataList = answer.split("X")
                         data = data_parser(dataList)
-                        temp = update_data(data)
-                        # temp = {
-                        #     "temperature": data[0],
-                        #     "humidity": data[1],
-                        #     "luminosity": data[2],
-                        #     "humidityGround": data[3]
-                        # }
+                        temp = update_data(data, temp)
                         print(temp)
-                        # print("{}".format(arduino.readline()))
-                        # ws.send("{}".format(arduino.readline()))
-                        # ws.send("Update data")
+                        ws.send(json.dumps(temp))
                     
             except KeyboardInterrupt:
                 ws.close()
