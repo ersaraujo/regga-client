@@ -33,14 +33,13 @@
 import serial
 import time as t
 
-with serial.Serial('/dev/ttyACM0', 115200) as arduino:
+with serial.Serial('/dev/ttyACM1', 9600) as arduino:
     t.sleep(0.1)
     if arduino.isOpen():
         print("{} connected".format(arduino.port))
         try:
             while True:
                 if arduino.in_waiting > 0:
-                    print(arduino.readline().decode('utf-8'))
-                    t.sleep(1)
+                    print("{}".format(arduino.readline()))
         except KeyboardInterrupt:
             print("Exiting...")
