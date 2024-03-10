@@ -27,11 +27,11 @@ def update_data(data, temp):
     return temp
 
 def update_screen(value):
-    if valor == "feliz":
+    if value == "feliz":
         canvas.itemconfig(rosto, image=feliz_img)
-    elif valor == "sede":
+    elif value == "sede":
         canvas.itemconfig(rosto, image=sede_img)
-    elif valor == "chorando":
+    elif value == "chorando":
         canvas.itemconfig(rosto, image=chorando_img)
 
 def set_skin(data):
@@ -43,11 +43,11 @@ def set_skin(data):
         print("Erro: Não foi possível converter os valores para inteiros.")
         return
 
-    if data["temperature"] > 30:
+    if temperature > 30:
         update_screen("sede")
-    elif data["humidityGround"] < 500:
+    elif humidity_ground < 500:
         update_screen("chorando")
-    elif data["luminosity"] > 400:
+    elif luminosity > 400:
         update_screen("chorando")
     else:
         update_screen("feliz")
