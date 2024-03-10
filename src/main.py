@@ -39,8 +39,8 @@ def set_skin(data):
     temperature = data["temperature"]
     humidity_ground = data["humidityGround"]
     luminosity = data["luminosity"]
-    
-    if temperature > 30.:
+
+    if float(temperature) > 30.:
         update_screen("sede")
     elif humidity_ground < 500:
         update_screen("chorando")
