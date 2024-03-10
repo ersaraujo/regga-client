@@ -1,7 +1,8 @@
 import serial
-
 import websocket
 import time as t
+import json
+import re
 
 def main():
     ws = websocket.WebSocket()
@@ -16,6 +17,8 @@ def main():
                         answer=str(arduino.readline())
                         dataList = answer.split("X")
                         print(dataList)
+                        data1 = re.search(r"'([^']*)", dataList[0].group(1))
+                        print(data1)
                         # print("{}".format(arduino.readline()))
                         # ws.send("{}".format(arduino.readline()))
                         # ws.send("Update data")
