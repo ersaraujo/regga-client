@@ -49,9 +49,9 @@ def set_skin(data, canvas):
 
     if float(temperature) > 30.:
         update_screen("sede", canvas)
-    elif humidity_ground < 500:
+    elif int(humidity_ground) < 500:
         update_screen("chorando",canvas)
-    elif luminosity > 400:
+    elif int(luminosity) > 400:
         update_screen("chorando", canvas)
     else:
         update_screen("feliz",canvas)
