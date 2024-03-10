@@ -26,14 +26,23 @@ def update_data(data, temp):
         temp.update({"humidityGround": u})
     return temp
 
-def feliz():
-    canvas.itemconfig(rosto, image=feliz_img)
+def update_screen(value):
+    if valor == "feliz":
+        canvas.itemconfig(rosto, image=feliz_img)
+    elif valor == "sede":
+        canvas.itemconfig(rosto, image=sede_img)
+    elif valor == "chorando":
+        canvas.itemconfig(rosto, image=chorando_img)
 
-def sede():
-    canvas.itemconfig(rosto, image=sede_img)
-
-def chorando():
-    canvas.itemconfig(rosto, image=chorando_img)
+def set_skin(data):
+    if data["temperature"] > 30:
+        update_screen("sede")
+    elif data["humidityGround"] < 500:
+        update_screen("chorando")
+    elif data["luminosity"] > 400:
+        update_screen("chorando")
+    else:
+        update_screen("feliz")
 
 def main():
     root = tk.Tk()
@@ -47,15 +56,6 @@ def main():
     rosto = canvas.create_image(640, 360, anchor=tk.CENTER, image=feliz_img)
     canvas.pack()
 
-    # Criar botões para mudar os emojis
-    btn_feliz = tk.Button(root, text="Feliz", command=feliz)
-    btn_feliz.pack(side=tk.LEFT)
-    btn_sede = tk.Button(root, text="Sede", command=sede)
-    btn_sede.pack(side=tk.LEFT)
-    btn_chorando = tk.Button(root, text="Chorando", command=chorando)
-    btn_chorando.pack(side=tk.LEFT)
-
-
     temp = {
         "temperature": 0,
         "humidity": 0,
@@ -63,6 +63,7 @@ def main():
         "humidityGround":0
     }
     updated = 0
+
     ws = websocket.WebSocket()
     ws.connect("ws://seminarios-server.loca.lt/ws")
     
@@ -79,6 +80,7 @@ def main():
                         data = data_parser(dataList)
                         temp = update_data(data, temp)
                         print(temp)
+                        set_skin(temp)
                         updated = updated + 1
                         if updated == 3:
                             updated = 0
