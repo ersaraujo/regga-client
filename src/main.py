@@ -1,8 +1,9 @@
 import serial
 import websocket
-import time as t
 import json
 import re
+import tkinter as tk
+import time as t
 
 def data_parser(data):
     data_len = len(data)
@@ -25,7 +26,36 @@ def update_data(data, temp):
         temp.update({"humidityGround": u})
     return temp
 
+def feliz():
+    canvas.itemconfig(rosto, image=feliz_img)
+
+def sede():
+    canvas.itemconfig(rosto, image=sede_img)
+
+def chorando():
+    canvas.itemconfig(rosto, image=chorando_img)
+
 def main():
+    root = tk.Tk()
+    root.title("Regga - v1.0")
+
+    feliz_img = tk.PhotoImage(file="feliz.png")
+    sede_img = tk.PhotoImage(file="sede.png")
+    chorando_img = tk.PhotoImage(file="chorando.png")
+
+    canvas = tk.Canvas(root, width=1280, height=720)
+    rosto = canvas.create_image(640, 360, anchor=tk.CENTER, image=feliz_img)
+    canvas.pack()
+
+    # Criar botões para mudar os emojis
+    btn_feliz = tk.Button(root, text="Feliz", command=feliz)
+    btn_feliz.pack(side=tk.LEFT)
+    btn_sede = tk.Button(root, text="Sede", command=sede)
+    btn_sede.pack(side=tk.LEFT)
+    btn_chorando = tk.Button(root, text="Chorando", command=chorando)
+    btn_chorando.pack(side=tk.LEFT)
+
+
     temp = {
         "temperature": 0,
         "humidity": 0,
@@ -35,6 +65,7 @@ def main():
     updated = 0
     ws = websocket.WebSocket()
     ws.connect("ws://seminarios-server.loca.lt/ws")
+    
     with serial.Serial('/dev/ttyACM1', 9600) as arduino:
         t.sleep(0.1)
         if arduino.isOpen():
@@ -46,12 +77,12 @@ def main():
                         dataList = answer.split("X")
                         data = data_parser(dataList)
                         temp = update_data(data, temp)
+                        print(temp)
                         updated = updated + 1
-                        if updated == 4:
+                        if updated == 3:
                             updated = 0
                             ws.send(json.dumps(temp))
-                            print(temp)
-
+                    root.mainloop()
 
             except KeyboardInterrupt:
                 ws.close()
@@ -60,3 +91,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# tmp = {
+
+# }
+
+# data = json dump(tmp)
