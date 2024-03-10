@@ -5,6 +5,10 @@ import re
 import tkinter as tk
 import time as t
 
+feliz_img = tk.PhotoImage(file="feliz.png")
+sede_img = tk.PhotoImage(file="sede.png")
+chorando_img = tk.PhotoImage(file="chorando.png")
+
 def data_parser(data):
     data_len = len(data)
     for i in range(data_len):
@@ -26,12 +30,15 @@ def update_data(data, temp):
         temp.update({"humidityGround": u})
     return temp
 
-def update_screen(value):
+def update_screen(value, canvas):
     if value == "feliz":
+        rosto = canvas.create_image(640, 360, anchor=tk.CENTER, image=feliz_img)
         canvas.itemconfig(rosto, image=feliz_img)
     elif value == "sede":
+        rosto = canvas.create_image(640, 360, anchor=tk.CENTER, image=feliz_img)
         canvas.itemconfig(rosto, image=sede_img)
     elif value == "chorando":
+        rosto = canvas.create_image(640, 360, anchor=tk.CENTER, image=feliz_img)
         canvas.itemconfig(rosto, image=chorando_img)
 
 def set_skin(data):
@@ -52,10 +59,6 @@ def set_skin(data):
 def main():
     root = tk.Tk()
     root.title("Regga - v1.0")
-
-    feliz_img = tk.PhotoImage(file="feliz.png")
-    sede_img = tk.PhotoImage(file="sede.png")
-    chorando_img = tk.PhotoImage(file="chorando.png")
 
     canvas = tk.Canvas(root, width=1280, height=720)
     rosto = canvas.create_image(640, 360, anchor=tk.CENTER, image=feliz_img)
