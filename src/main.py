@@ -22,14 +22,5 @@ def main():
                 print("Exiting...")
     
 
-with serial.Serial('/dev/ttyACM1', 9600) as arduino:
-    t.sleep(0.1)
-    if arduino.isOpen():
-        print("{} connected".format(arduino.port))
-        try:
-            while True:
-                if arduino.in_waiting > 0:
-                    print("{}".format(arduino.readline()))
-                
-        except KeyboardInterrupt:
-            print("Exiting...")
+if __name__ == "__main__":
+    main()
