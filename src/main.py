@@ -37,7 +37,7 @@ def update_screen(value):
 def set_skin(data):
     temperature_str = data["temperature"].replace(" ", "").replace(",", ".")
     # humidity_ground_str = data["humidityGround"].replace(" ", "").replace(",", ".")
-    luminosity_str = data["luminosity"].replace(" ", "").replace(",", ".")
+    # luminosity_str = data["luminosity"].replace(" ", "").replace(",", ".")
 
     try:
         temperature = int(temperature_str)
