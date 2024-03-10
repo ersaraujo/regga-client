@@ -27,40 +27,13 @@ def update_data(data, temp):
         temp.update({"humidityGround": u})
     return temp
 
-def update_screen(value, canvas):
-    feliz_img = tk.PhotoImage(file="feliz.png")
-    sede_img = tk.PhotoImage(file="sede.png")
-    chorando_img = tk.PhotoImage(file="chorando.png")
-    if value == "feliz":
-        rosto = canvas.create_image(640, 360, anchor=tk.CENTER, image=feliz_img)
-        canvas.itemconfig(rosto, image=feliz_img)
-    elif value == "sede":
-        rosto = canvas.create_image(640, 360, anchor=tk.CENTER, image=feliz_img)
-        canvas.itemconfig(rosto, image=sede_img)
-    elif value == "chorando":
-        rosto = canvas.create_image(640, 360, anchor=tk.CENTER, image=feliz_img)
-        canvas.itemconfig(rosto, image=chorando_img)
-
-def set_skin(data, canvas):
-
-    temperature = data["temperature"]
-    humidity_ground = data["humidityGround"]
-    luminosity = data["luminosity"]
-
-    if float(temperature) > 30.:
-        update_screen("sede", canvas)
-    elif int(humidity_ground) < 500:
-        update_screen("chorando",canvas)
-    elif int(luminosity) > 400:
-        update_screen("chorando", canvas)
-    else:
-        update_screen("feliz",canvas)
-
 def main():
     root = tk.Tk()
     root.title("Regga - v1.0")
-
+    
+    planta = tk.PhotoImage(file="planta.png")
     canvas = tk.Canvas(root, width=1280, height=720)
+    canvas.create_image(640, 360, anchor=tk.CENTER, image=planta)
     canvas.pack()
 
     temp = {
@@ -93,7 +66,7 @@ def main():
                         data = data_parser(dataList)
                         temp = update_data(data, temp)
                         print(temp)
-                        set_skin(temp, canvas)
+                        # set_skin(temp, canvas)
                         updated = updated + 1
                         if updated == 3:
                             updated = 0
