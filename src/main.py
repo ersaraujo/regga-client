@@ -66,7 +66,7 @@ def main():
     ws = websocket.WebSocket()
     ws.connect("ws://seminarios-server.loca.lt/ws")
     
-    with serial.Serial('/dev/ttyACM1', 9600) as arduino:
+    with serial.Serial('/dev/ttyACM0', 9600) as arduino:
         t.sleep(0.1)
         if arduino.isOpen():
             print("{} connected".format(arduino.port))
