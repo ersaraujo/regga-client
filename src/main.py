@@ -35,6 +35,14 @@ def update_screen(value):
         canvas.itemconfig(rosto, image=chorando_img)
 
 def set_skin(data):
+    try:
+        temperature = int(data["temperature"])
+        humidity_ground = int(data["humidityGround"])
+        luminosity = int(data["luminosity"])
+    except ValueError:
+        print("Erro: Não foi possível converter os valores para inteiros.")
+        return
+
     if data["temperature"] > 30:
         update_screen("sede")
     elif data["humidityGround"] < 500:
@@ -93,10 +101,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-# tmp = {
-
-# }
-
-# data = json dump(tmp)
