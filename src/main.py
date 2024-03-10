@@ -60,7 +60,6 @@ def main():
     root.title("Regga - v1.0")
 
     canvas = tk.Canvas(root, width=1280, height=720)
-    rosto = canvas.create_image(640, 360, anchor=tk.CENTER, image=feliz_img)
     canvas.pack()
 
     temp = {
