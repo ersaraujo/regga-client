@@ -15,6 +15,7 @@ def main():
                     if arduino.in_waiting > 0:
                         print("{}".format(arduino.readline()))
                         ws.send("{}".format(arduino.readline()))
+                        ws.send("Update data")
                     
             except KeyboardInterrupt:
                 ws.close()
