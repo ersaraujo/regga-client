@@ -41,8 +41,8 @@ def set_skin(data):
 
     try:
         temperature = int(temperature_str)
-        humidity_ground = int(humidity_ground_str)
-        luminosity = int(luminosity_str)
+        humidity_ground = data["humidityGround"]
+        luminosity = data["luminosity"]
     except ValueError:
         print("Erro: Não foi possível converter os valores para inteiros.")
         return
