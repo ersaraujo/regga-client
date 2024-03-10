@@ -23,13 +23,14 @@ def main():
                         answer=str(arduino.readline())
                         dataList = answer.split("X")
                         data = data_parser(dataList)
-                        temp = {
-                            "temperature": data[0],
-                            "humidity": data[1],
-                            "luminosity": data[2],
-                            "humidityGround": data[3]
-                        }
-                        print(temp)
+                        print(data)
+                        # temp = {
+                        #     "temperature": data[0],
+                        #     "humidity": data[1],
+                        #     "luminosity": data[2],
+                        #     "humidityGround": data[3]
+                        # }
+                        # print(temp)
                         # print("{}".format(arduino.readline()))
                         # ws.send("{}".format(arduino.readline()))
                         # ws.send("Update data")
