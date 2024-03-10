@@ -72,6 +72,7 @@ def main():
             print("{} connected".format(arduino.port))
             try:
                 while True:
+                    root.mainloop()
                     if arduino.in_waiting > 0:
                         answer=str(arduino.readline())
                         dataList = answer.split("X")
@@ -82,7 +83,6 @@ def main():
                         if updated == 3:
                             updated = 0
                             ws.send(json.dumps(temp))
-                    root.mainloop()
 
             except KeyboardInterrupt:
                 ws.close()
