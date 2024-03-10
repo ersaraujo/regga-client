@@ -35,10 +35,14 @@ def update_screen(value):
         canvas.itemconfig(rosto, image=chorando_img)
 
 def set_skin(data):
+    temperature_str = data["temperature"].replace(" ", "").replace(",", ".")
+    humidity_ground_str = data["humidityGround"].replace(" ", "").replace(",", ".")
+    luminosity_str = data["luminosity"].replace(" ", "").replace(",", ".")
+
     try:
-        temperature = int(data["temperature"])
-        humidity_ground = int(data["humidityGround"])
-        luminosity = int(data["luminosity"])
+        temperature = int(temperature_str)
+        humidity_ground = int(humidity_ground_str)
+        luminosity = int(luminosity_str)
     except ValueError:
         print("Erro: Não foi possível converter os valores para inteiros.")
         return
