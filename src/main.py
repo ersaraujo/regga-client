@@ -4,6 +4,7 @@ import json
 import re
 import tkinter as tk
 import time as t
+import datetime
 
 def data_parser(data):
     data_len = len(data)
@@ -40,20 +41,20 @@ def update_screen(value, canvas):
         rosto = canvas.create_image(640, 360, anchor=tk.CENTER, image=feliz_img)
         canvas.itemconfig(rosto, image=chorando_img)
 
-def set_skin(data):
+def set_skin(data, canvas):
 
     temperature = data["temperature"]
     humidity_ground = data["humidityGround"]
     luminosity = data["luminosity"]
 
     if float(temperature) > 30.:
-        update_screen("sede")
+        update_screen("sede", canvas)
     elif humidity_ground < 500:
-        update_screen("chorando")
+        update_screen("chorando",canvas)
     elif luminosity > 400:
-        update_screen("chorando")
+        update_screen("chorando", canvas)
     else:
-        update_screen("feliz")
+        update_screen("feliz",canvas)
 
 def main():
     root = tk.Tk()
@@ -63,6 +64,13 @@ def main():
     canvas.pack()
 
     temp = {
+        "temperature_sensor_id": "500",
+        "light_sensor_id": "500",
+        "humidity_sensor_id": "500",
+        "device_id": "200",
+        "plant_id": "10203",
+        "plant_name": "dev_plant",
+        "timestamp": str(datetime.datetime.now()),
         "temperature": 0,
         "humidity": 0,
         "luminosity": 0,
@@ -85,7 +93,7 @@ def main():
                         data = data_parser(dataList)
                         temp = update_data(data, temp)
                         print(temp)
-                        set_skin(temp)
+                        set_skin(temp, canvas)
                         updated = updated + 1
                         if updated == 3:
                             updated = 0
