@@ -5,10 +5,6 @@ import re
 import tkinter as tk
 import time as t
 
-feliz_img = tk.PhotoImage(file="feliz.png")
-sede_img = tk.PhotoImage(file="sede.png")
-chorando_img = tk.PhotoImage(file="chorando.png")
-
 def data_parser(data):
     data_len = len(data)
     for i in range(data_len):
@@ -31,6 +27,9 @@ def update_data(data, temp):
     return temp
 
 def update_screen(value, canvas):
+    feliz_img = tk.PhotoImage(file="feliz.png")
+    sede_img = tk.PhotoImage(file="sede.png")
+    chorando_img = tk.PhotoImage(file="chorando.png")
     if value == "feliz":
         rosto = canvas.create_image(640, 360, anchor=tk.CENTER, image=feliz_img)
         canvas.itemconfig(rosto, image=feliz_img)
